@@ -33,7 +33,7 @@ export default {
   methods: {
     handleLogin () {
       this.$http.post('login', this.formLabelAlign).then(res => {
-        // console.log(res)
+        console.log(res)
         // 登陆成功  1.跳转home  2.提示登陆成功
         // 登陆失败 提示失败的原因
         const {
@@ -43,6 +43,7 @@ export default {
           }} = res.data
         if (status === 200) {
           // 成功跳转
+          localStorage.setItem('token', data.token)// 保存登陆成功的token值
           this.$message.success(msg) // 登录成功的提示信息
           this.$router.push({
             name: 'home'
